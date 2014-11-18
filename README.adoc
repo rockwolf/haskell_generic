@@ -1,0 +1,3 @@
+= haskell_generic
+
+Generic haskell code, used in different projects.
