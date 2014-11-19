@@ -1,7 +1,7 @@
--- | ------------------------------------------------------------------------------|
--- | Main module which does data-type conversions and general data manipulations.  |
--- | ------------------------------------------------------------------------------|
-
+------------------------------------------------------------------------------
+-- | This module does data-type conversions and general data manipulations.
+--   See LICENSE file for copyright and license info.
+------------------------------------------------------------------------------
 module DataConversion where
 
 --||| Imports
