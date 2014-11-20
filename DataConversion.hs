@@ -13,19 +13,19 @@ import Control.Monad (when)
 import System.Exit (exitSuccess)
 
 -- ||| Data conversion methods
--- | Parses a list of ;-separated string to a list of strings
+-- | Parses a list of <delimiter>-separated string to a list of strings
 -- | Example: ["12;10", "15;5"]
 -- | gives ["12", "10", "15", "5"]
-splitLinesToElements :: [String] -> [String]
-splitLinesToElements [] = []
-splitLinesToElements [x] = splitString x
-splitLinesToElements (x:xs) = (splitLinesToElements $ splitString x) ++ splitLinesToElements xs
+splitLinesToElements :: [String] -> String -> [String]
+splitLinesToElements [] delim = []
+splitLinesToElements [x] delim = splitString x delim
+splitLinesToElements (x:xs) delim = (splitLinesToElements $ (splitString x delim) delim) ++ splitLinesToElements xs delim
 
 -- | Splits a ;-separated string into a list
 -- | Example: "12;10"
 -- | gives ["12", "10"]
-splitString :: String -> [String]
-splitString c = splitOn ";" $ filter (/=' ') c
+splitString :: String -> String -> [String]
+splitString c delim = splitOn delim $ filter (/=' ') c
 
 -- | Convert String to Double datatype
 -- TODO: use reads?
