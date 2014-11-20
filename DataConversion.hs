@@ -4,7 +4,7 @@
 ------------------------------------------------------------------------------
 module DataConversion where
 
---||| Imports
+-- ||| Imports
 import Data.Default.Class
 import Control.Lens hiding (argument)
 import Data.List.Split
