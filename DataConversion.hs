@@ -16,16 +16,16 @@ import System.Exit (exitSuccess)
 -- | Parses a list of ;-separated string to a list of strings
 -- | Example: ["12;10", "15;5"]
 -- | gives ["12", "10", "15", "5"]
-parseLinesToStringList :: [String] -> [String]
-parseLinesToStringList [] = []
-parseLinesToStringList [x] = parseCurrent x
-parseLinesToStringList (x:xs) = (parseLinesToStringList $ parseCurrent x) ++ parseLinesToStringList xs
+splitLinesToElements :: [String] -> [String]
+splitLinesToElements [] = []
+splitLinesToElements [x] = splitString x
+splitLinesToElements (x:xs) = (splitLinesToElements $ splitString x) ++ splitLinesToElements xs
 
 -- | Splits a ;-separated string into a list
 -- | Example: "12;10"
 -- | gives ["12", "10"]
-parseCurrent :: String -> [String]
-parseCurrent c = splitOn ";" $ filter (/=' ') c
+splitString :: String -> [String]
+splitString c = splitOn ";" $ filter (/=' ') c
 
 -- | Convert String to Double datatype
 -- TODO: use reads?
