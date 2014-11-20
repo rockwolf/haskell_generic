@@ -4,7 +4,7 @@
 ------------------------------------------------------------------------------
 module FileIO where
 
---||| Imports
+-- ||| Imports
 -- TODO: what imports are needed?
 
 -- | Return file content as a list of (IO) strings.
