@@ -46,7 +46,7 @@ removeFirstFromGroupedList [] = []
 removeFirstFromGroupedList [x] = []
 removeFirstFromGroupedList (x:y:[]) = [y]
 removeFirstFromGroupedList (x:y:z:[]) = [y] ++ [z]
-removeFirstFromGroupedList (x:y:z:xs) = [y] ++ [z] ++ (removeFirstFromList xs)
+removeFirstFromGroupedList (x:y:z:xs) = [y] ++ [z] ++ (removeFirstFromGroupedList xs)
 
 -- | Remove last element from list with groups [a1, b1, c1, a2, b2, c2, ...]
 -- | Example: [20141112;82.3;a comment;20141113;82.1;another comment]
@@ -56,7 +56,7 @@ removeLastFromGroupedList [] = []
 removeLastFromGroupedList [x] = []
 removeLastFromGroupedList (x:y:[]) = [x] ++ [y]
 removeLastFromGroupedList (x:y:z:[]) = [x] ++ [y] ++ [z]
-removeLastFromGroupedList (x:y:z:xs) = [x] ++ [y] ++ [z] ++ (removeFirstFromList xs)
+removeLastFromGroupedList (x:y:z:xs) = [x] ++ [y] ++ [z] ++ (removeLastFromGroupedList xs)
 
 -- | Turn list into list of lists (2 pairs)
 -- | Example: ["12", "10", "15", 5"]
