@@ -4,9 +4,9 @@
 ------------------------------------------------------------------------------
 module DateUtil where
 
---||| Imports
-import Date.Time.Calendar
-import Date.Time.LocalTime
+-- ||| Imports
+import Data.Time.Calendar
+import Data.Time.LocalTime
 
 
 mkDate dd mm yyyy =
