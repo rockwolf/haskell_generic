@@ -4,17 +4,30 @@
 ------------------------------------------------------------------------------
 module DateUtil where
 
+-----------------------------------------------------------------------------
 -- ||| Imports
+-----------------------------------------------------------------------------
 import Data.Time.Calendar
 import Data.Time.LocalTime
 
-
+-----------------------------------------------------------------------------
+-- | mkDate
+-- | Create a date from dd mm yyyy data.
+-----------------------------------------------------------------------------
 mkDate dd mm yyyy =
     LocalTime (fromGregorian (fromIntegral yyyy) mm dd) midnight
     
+-----------------------------------------------------------------------------
+-- | mkDateTime
+-- | Create a datetime from dd mm yyyy hh nn data.
+-----------------------------------------------------------------------------
 mkDateTime dd mm yyyy hh nn =
     LocalTime (fromGregorian (fromIntegral yyyy) mm dd)
               (dayFractionToTimeOfDay ((hh*60+nn)/1440))
               
+-----------------------------------------------------------------------------
+-- | mkSeconds
+-- | Create localtime from given seconds.
+-----------------------------------------------------------------------------
 mkSeconds ss = LocalTime (fromGregorian (fromIntegral 2009) 11 23)
                          (dayFractionToTimeOfDay (((14*60+32)*60+ss)/(1440*60)))
