@@ -4,10 +4,15 @@
 ------------------------------------------------------------------------------
 module FileIO where
 
+-----------------------------------------------------------------------------
 -- ||| Imports
+-----------------------------------------------------------------------------
 -- TODO: what imports are needed?
 
+-----------------------------------------------------------------------------
+-- | loadFileToStringList
 -- | Return file content as a list of (IO) strings.
+-----------------------------------------------------------------------------
 loadFileToStringList :: FilePath -> IO [String]
 loadFileToStringList filename = do
   my_data <- readFile filename
