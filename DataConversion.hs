@@ -18,15 +18,16 @@ import System.Exit (exitSuccess)
 -- ||| Data conversion methods
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
--- | Parses a list of <delimiter>-separated string to a list of strings
+-- | Parses a list of <delimiter>-separated string to a list of 
+-- | lists, containing the separated strings.
 --
 -- Example: ["12;10", "15;5"]
--- gives ["12", "10", "15", "5"]
+-- gives [ ["12", "10"], ["15", "5"] ]
 -----------------------------------------------------------------------------
-splitLinesToElements :: String -> [String] -> [String]
-splitLinesToElements delim [] = []
-splitLinesToElements delim [x] = splitString x delim
-splitLinesToElements delim (x:xs) = (splitLinesToElements delim (splitString x delim)) ++ splitLinesToElements delim xs
+splitLinesToListOfStrings :: String -> [String] -> [[String]]
+splitLinesToListOfStrings delim [] = []
+splitLinesToListOfStrings delim [x] = [splitString x delim]
+splitLinesToListOfStrings delim (x:xs) = [splitString x delim] ++ splitLinesToListOfStrings delim xs
 
 -----------------------------------------------------------------------------
 -- | Splits a ;-separated string into a list
@@ -56,44 +57,6 @@ convertListStringToDouble = map convertToDouble
 -----------------------------------------------------------------------------
 -- ||| List manipulations
 -----------------------------------------------------------------------------
------------------------------------------------------------------------------
--- | Remove first element from list with groups [a1, b1, c1, a2, b2, c2, ...]
---
--- Example: [20141112;82.3;a comment;20141113;82.1;another comment]
--- gives: [82.3;82.1]
------------------------------------------------------------------------------
-removeFirstFromGroupedList :: [a] -> [a]
-removeFirstFromGroupedList [] = []
-removeFirstFromGroupedList [x] = []
-removeFirstFromGroupedList (x:y:[]) = [y]
-removeFirstFromGroupedList (x:y:z:[]) = [y] ++ [z]
-removeFirstFromGroupedList (x:y:z:xs) = [y] ++ [z] ++ (removeFirstFromGroupedList xs)
-
------------------------------------------------------------------------------
--- | Remove last element from list with groups [a1, b1, c1, a2, b2, c2, ...]
---
--- Example: [20141112;82.3;a comment;20141113;82.1;another comment]
--- gives: [20141112;82.3;20141113;82.1]
------------------------------------------------------------------------------
-removeLastFromGroupedList :: [a] -> [a]
-removeLastFromGroupedList [] = []
-removeLastFromGroupedList [x] = []
-removeLastFromGroupedList (x:y:[]) = [x] ++ [y]
-removeLastFromGroupedList (x:y:z:[]) = [x] ++ [y] ++ [z]
-removeLastFromGroupedList (x:y:z:xs) = [x] ++ [y] ++ [z] ++ (removeLastFromGroupedList xs)
-
------------------------------------------------------------------------------
--- | Turn list into list of lists (2 pairs)
---
--- Example: ["12", "10", "15", 5"]
--- gives [["12", "10"], ["15", 5"]]
------------------------------------------------------------------------------
-convertListToListOfLists :: [a] -> [[a]]
-convertListToListOfLists [] = []
-convertListToListOfLists [x] = []
-convertListToListOfLists (x:y:[]) = [[x] ++ [y]]
-convertListToListOfLists (x:y:xs) = [[x] ++ [y]] ++ (convertListToListOfLists xs)
-
 -----------------------------------------------------------------------------
 -- | Drop the last n elements from a list
 -----------------------------------------------------------------------------
