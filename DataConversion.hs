@@ -26,8 +26,8 @@ import System.Exit (exitSuccess)
 -----------------------------------------------------------------------------
 splitLinesToListOfStrings :: String -> [String] -> [[String]]
 splitLinesToListOfStrings delim [] = []
-splitLinesToListOfStrings delim [x] = [splitString x delim]
-splitLinesToListOfStrings delim (x:xs) = [splitString x delim] ++ splitLinesToListOfStrings delim xs
+splitLinesToListOfStrings delim [x] = [splitString delim x]
+splitLinesToListOfStrings delim (x:xs) = [splitString delim x] ++ splitLinesToListOfStrings delim xs
 
 -----------------------------------------------------------------------------
 -- | Splits a ;-separated string into a list
@@ -61,7 +61,7 @@ convertListStringToDouble = map convertToDouble
 -- | Drop the last n elements from a list
 -----------------------------------------------------------------------------
 dropLastN :: Int -> [a] -> [a]
-dropLastN n xs = reverse $ foldl' (const . drop 1) (reverse xs) (drop n xs)
+dropLastN n xs = reverse $ drop n (reverse xs)
 
 -----------------------------------------------------------------------------
 -- | Get the last n elements from a list
