@@ -31,3 +31,10 @@ mkDateTime dd mm yyyy hh nn =
 -----------------------------------------------------------------------------
 mkSeconds ss = LocalTime (fromGregorian (fromIntegral 2009) 11 23)
                          (dayFractionToTimeOfDay (((14*60+32)*60+ss)/(1440*60)))
+
+-----------------------------------------------------------------------------
+-- | datestringToLocalTime
+-- | Create localtime from "yyyy-mm-dd" string.
+-----------------------------------------------------------------------------
+datestringToLocalTime a_datestring = 
+    readTime defaultTimeLocale "%Y-%m-%d" a_datestring :: UTCTime
